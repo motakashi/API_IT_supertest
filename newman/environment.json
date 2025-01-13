@@ -1,0 +1,21 @@
+{
+	"id": "187f1333-ab93-4aec-bb26-d3c7400f74a9",
+	"name": "API_IT_TEST",
+	"values": [
+		{
+			"key": "base_url",
+			"value": "localhost",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "port_number",
+			"value": "3000",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2025-01-13T04:59:28.808Z",
+	"_postman_exported_using": "Postman/11.27.4-250109-2338"
+}

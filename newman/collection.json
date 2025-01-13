@@ -1,0 +1,190 @@
+{
+	"info": {
+		"_postman_id": "4188d907-d08a-4a88-a4a3-fb7aeafbd62d",
+		"name": "API_IT_TEST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40767354"
+	},
+	"item": [
+		{
+			"name": "GET /api/resource",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// ステータスコードが200であることを確認",
+							"pm.test(\"ステータスコードが200である\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// レスポンスヘッダーがJSONであることを確認",
+							"pm.test(\"レスポンスのContent-Typeがapplication/jsonである\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");",
+							"});",
+							"",
+							"// レスポンスボディに 'message' キーが含まれることを確認",
+							"pm.test(\"レスポンスボディに'message'キーが含まれる\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property(\"message\");",
+							"});",
+							"",
+							"// 'message' の値が 'Hello, World!' であることを確認",
+							"pm.test(\"'message'の値が'Hello, World!'である\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"Hello, World!\");",
+							"});",
+							"",
+							"// レスポンス時間が1s未満であることを確認",
+							"pm.test(\"レスポンス時間が1秒未満である\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{base_url}}:{{port_number}}/api/resource",
+					"protocol": "http",
+					"host": [
+						"{{base_url}}"
+					],
+					"port": "{{port_number}}",
+					"path": [
+						"api",
+						"resource"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /api/resource",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// ステータスコードが201であることを確認",
+							"pm.test(\"ステータスコードが201である\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"// レスポンスヘッダーがJSONであることを確認",
+							"pm.test(\"レスポンスのContent-Typeがapplication/jsonである\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");",
+							"});",
+							"",
+							"// レスポンスボディに 'message' キーが含まれることを確認",
+							"pm.test(\"レスポンスボディに'message'キーが含まれる\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property(\"message\");",
+							"});",
+							"",
+							"// 'message' の値が 'Hello, World!' であることを確認",
+							"pm.test(\"'message'の値が'Hello, World!'である\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"Resource created for John Doe\");",
+							"});",
+							"",
+							"// レスポンス時間が1s未満であることを確認",
+							"pm.test(\"レスポンス時間が1秒未満である\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"name\" : \"John Doe\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{base_url}}:{{port_number}}/api/resource",
+					"protocol": "http",
+					"host": [
+						"{{base_url}}"
+					],
+					"port": "{{port_number}}",
+					"path": [
+						"api",
+						"resource"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST-ERR /api/resource",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// ステータスコードが400であることを確認",
+							"pm.test(\"ステータスコードが400である\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"// レスポンスヘッダーがJSONであることを確認",
+							"pm.test(\"レスポンスのContent-Typeがapplication/jsonである\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");",
+							"});",
+							"",
+							"// レスポンスボディに 'message' キーが含まれないことを確認",
+							"pm.test(\"レスポンスボディに'message'キーが含まれる\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData).not.to.have.property(\"message\");",
+							"});",
+							"",
+							"// 'error' の値が 'Name is required' であることを確認",
+							"pm.test(\"'message'の値が'Hello, World!'である\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData.error).to.eql(\"Name is required\");",
+							"});",
+							"",
+							"// レスポンス時間が1s未満であることを確認",
+							"pm.test(\"レスポンス時間が1秒未満である\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://{{base_url}}:{{port_number}}/api/resource",
+					"protocol": "http",
+					"host": [
+						"{{base_url}}"
+					],
+					"port": "{{port_number}}",
+					"path": [
+						"api",
+						"resource"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
